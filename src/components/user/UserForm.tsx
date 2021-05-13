@@ -1,11 +1,8 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { useRecoilState } from 'recoil';
-import { userFromTypeState } from '../recoil/atom';
-const { Title, Link } = Typography;
 
-interface Props {}
+const { Title, Link } = Typography;
 
 const layout = {
   labelCol: { span: 8 },
@@ -15,8 +12,12 @@ const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
 
-export const UserForm = (props: Props) => {
-  const [check, setCheck] = useRecoilState(userFromTypeState);
+interface UserFormProps {
+  checkUser: string;
+}
+
+export const UserForm:React.FC<UserFormProps> = ({ checkUser }) => {
+  console.log(checkUser);
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
   };
@@ -37,7 +38,7 @@ export const UserForm = (props: Props) => {
         <Form.Item>
           <Title level={4}>Daytechstagram</Title>
         </Form.Item>
-        {check === 'userCheck' ? 'User Login' : 'Registration'}
+        {checkUser === 'signin' ? 'User Login' : 'Registration'}
         <Form.Item
           label='Username'
           name='username'
@@ -65,21 +66,16 @@ export const UserForm = (props: Props) => {
           <Form.Item name='remember' valuePropName='checked' noStyle>
             <Checkbox>Remember me</Checkbox>
           </Form.Item>
-          <Button
-            onClick={() => {
-              check == 'userCheck' ? setCheck('signUp') : setCheck('userCheck');
-            }}
-            type='link'
-          >
-            {check === 'userCheck'
-              ? `Don't have an account?`
-              : 'Already have an account ?'}
-          </Button>
+          {checkUser !== 'signin' ? (
+            <Link href='/signin'>Already have an account ?</Link>
+          ) : (
+            <Link href='/signup'>Don't have an account?</Link>
+          )}
         </Form.Item>
 
         <Form.Item {...tailLayout}>
           <Button type='primary' htmlType='submit'>
-            {check === 'userCheck' ? `Login ` : 'SignUp'}
+            {checkUser === 'signin' ? 'Login' : 'SignUp'}
           </Button>
         </Form.Item>
       </Form>
