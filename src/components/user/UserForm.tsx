@@ -1,8 +1,9 @@
 import React from 'react';
 import { Form, Input, Button, Checkbox, Typography } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 
-const { Title, Link } = Typography;
+const { Title } = Typography;
 
 const layout = {
   labelCol: { span: 8 },
@@ -16,7 +17,7 @@ interface UserFormProps {
   checkUser: string;
 }
 
-export const UserForm:React.FC<UserFormProps> = ({ checkUser }) => {
+export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
   console.log(checkUser);
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
@@ -38,7 +39,9 @@ export const UserForm:React.FC<UserFormProps> = ({ checkUser }) => {
         <Form.Item>
           <Title level={4}>Daytechstagram</Title>
         </Form.Item>
-        {checkUser === 'signin' ? 'User Login' : 'Registration'}
+        <Form.Item>
+          {checkUser === 'signin' ? 'User Login' : 'Registration'}
+        </Form.Item>
         <Form.Item
           label='Username'
           name='username'
@@ -82,6 +85,3 @@ export const UserForm:React.FC<UserFormProps> = ({ checkUser }) => {
     </>
   );
 };
-
-// tsrafc
-// tsrafce

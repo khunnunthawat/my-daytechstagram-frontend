@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { UserForm } from '@/components/user/UserForm';
 
 export default function Home() {
   return (
