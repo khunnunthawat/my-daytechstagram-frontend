@@ -6,13 +6,11 @@ import MainLayout from '@/components/layouts/MainLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className='min-h-screen flex'>
-      <MainLayout>
-        <RecoilRoot>
-          <Component {...pageProps} />
-        </RecoilRoot>
-      </MainLayout>
-    </div>
+    <MainLayout>
+      <RecoilRoot>
+        <Component {...pageProps} />
+      </RecoilRoot>
+    </MainLayout>
   );
 }
 

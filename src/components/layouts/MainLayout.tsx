@@ -8,17 +8,19 @@ interface Props {}
 const MainLayout = ({ children }: any) => {
   return (
     <>
-      <Layout className='layout'>
-        {/* <Header>
+      <div className='min-h-screen flex'>
+        <Layout className='layout'>
+          {/* <Header>
           <div className='logo' />
         </Header> */}
-        <Content style={{ padding: '0 50px', margin: '100px 0' }}>
-          {children}
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Daytechstagram ©2020 Created by Eiffel
-        </Footer>
-      </Layout>
+          <Content style={{ padding: '0 50px', margin: '100px 0' }}>
+            {children}
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            Daytechstagram ©2020 Created by Eiffel
+          </Footer>
+        </Layout>
+      </div>
     </>
   );
 };
