@@ -12,10 +12,8 @@ const MainLayout = ({ children }: any) => {
         {/* <Header>
           <div className='logo' />
         </Header> */}
-        <Content style={{ padding: '0 50px', margin: '16px 0' }}>
-          <div className='container mx-auto'>
-            <div className='max-w-md mx-auto my-10'>{children}</div>
-          </div>
+        <Content style={{ padding: '0 50px', margin: '100px 0' }}>
+          {children}
         </Content>
         <Footer style={{ textAlign: 'center' }}>
           Daytechstagram ©2020 Created by Eiffel

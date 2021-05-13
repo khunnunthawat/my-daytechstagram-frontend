@@ -46,9 +46,6 @@
   "allowJs": true,
   "skipLibCheck": true,
   "strict": true,
-
-  npm i less
-  npm i less-loader@6.0.0
 ###
 
 ###
@@ -67,4 +64,41 @@
   @border-color-base: #d9d9d9; // major border color
   @box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
     0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
+###
+
+###
+  Customize Theme
+  npm i @craco/craco --save
+  touch craco.config.js
+  npm i craco-less
+###
+
+###
+{
+  "name": "with-tailwindcss",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8080",
+    "build": "next build",
+    "start": "next start -p 8080"
+  },
+  "dependencies": {
+    "@craco/craco": "^6.1.2",
+    "antd": "^4.15.5",
+    "babel-plugin-import": "^1.13.3",
+    "next": "latest",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "recoil": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.0.3",
+    "@types/react": "^17.0.5",
+    "autoprefixer": "^10.0.4",
+    "postcss": "^8.1.10",
+    "tailwindcss": "^2.1.1",
+    "typescript": "^4.2.4"
+  }
+}
 ###

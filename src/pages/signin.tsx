@@ -8,9 +8,7 @@ export default function Signin() {
         <title>Daytech stagram</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div>
-        <UserForm checkUser='signin' />
-      </div>
+      <UserForm checkUser='signin' />
     </>
   );
 }
