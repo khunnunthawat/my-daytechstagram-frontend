@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { SingUp } from '@/components/user/SingUp';
+import { UserForm } from '@/components/user/UserForm';
 
 export default function Home() {
   return (
@@ -8,7 +8,9 @@ export default function Home() {
         <title>Daytechstagram-frontend</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <SingUp />
+      <div>
+        <UserForm />
+      </div>
     </>
   );
 }
