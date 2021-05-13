@@ -84,7 +84,11 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
                 </div>
               </div>
               <div className='flex flex-col space-y-5 my-7'>
-                <Button size='large' type='primary' htmlType='submit'>
+                <Button
+                  size='large'
+                  type='primary'
+                  htmlType='submit'
+                >
                   {checkUser === 'signin' ? 'Login' : 'SignUp'}
                 </Button>
               </div>

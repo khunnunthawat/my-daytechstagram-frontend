@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Menu, Image } from 'antd';
 
 const { Content, Footer } = Layout;
 
@@ -10,9 +10,10 @@ const MainLayout = ({ children }: any) => {
     <>
       <div className='min-h-screen flex'>
         <Layout className='layout'>
-          {/* <Header>
-          <div className='logo' />
-        </Header> */}
+          <Menu theme='light' mode='horizontal' defaultSelectedKeys={['2']}>
+            <Menu.Item key='1'>Home</Menu.Item>
+            <Menu.Item key='2'>SignUp</Menu.Item>
+          </Menu>
           <Content style={{ padding: '0 50px', margin: '100px 0' }}>
             {children}
           </Content>
