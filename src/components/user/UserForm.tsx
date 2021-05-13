@@ -37,7 +37,7 @@ export const UserForm = (props: Props) => {
         <Form.Item>
           <Title level={4}>Daytechstagram</Title>
         </Form.Item>
-        {check === 'userFromType' ? 'User Login' : 'Registration'}
+        {check === 'userCheck' ? 'User Login' : 'Registration'}
         <Form.Item
           label='Username'
           name='username'
@@ -67,21 +67,19 @@ export const UserForm = (props: Props) => {
           </Form.Item>
           <Button
             onClick={() => {
-              check == 'userFromType'
-                ? setCheck('signUp')
-                : setCheck('userFromType');
+              check == 'userCheck' ? setCheck('signUp') : setCheck('userCheck');
             }}
             type='link'
           >
-            {check === 'userFromType'
-              ? 'Register now!'
+            {check === 'userCheck'
+              ? `Don't have an account?`
               : 'Already have an account ?'}
           </Button>
         </Form.Item>
 
         <Form.Item {...tailLayout}>
           <Button type='primary' htmlType='submit'>
-            {check === 'userFromType' ? `Login ` : 'SignUp'}
+            {check === 'userCheck' ? `Login ` : 'SignUp'}
           </Button>
         </Form.Item>
       </Form>
