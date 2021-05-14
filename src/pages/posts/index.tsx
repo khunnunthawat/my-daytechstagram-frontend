@@ -9,7 +9,6 @@ import { createPostState } from '@/components/recoil/atom';
 interface Props {}
 
 const posts = () => {
-
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
   return (
@@ -19,7 +18,7 @@ const posts = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='flex flex-wrap items-center lg:justify-center'>
-        <h2 className='sm:text-3xl text-2xl text-gray-900 font-medium title-font'>
+        <h2 className='text-xl text-gray-900 font-medium title-font'>
           Daytechstagram
         </h2>
         <div className='md:w-3/5 md:pl-6'>
@@ -29,7 +28,7 @@ const posts = () => {
               onClick={() => {
                 setModalPost(true);
               }}
-              className='p-1 px-4 font-medium text-white ml-2 float-right'
+              className='p-1 px-4 font-medium text-white rounded-md ml-2 float-right'
             >
               <Link shallow={true} href='/posts/create'>
                 New Post
@@ -39,6 +38,7 @@ const posts = () => {
         </div>
       </div>
       <Card />
+      
     </>
   );
 };

@@ -14,6 +14,7 @@ export const CreatePost = (props: Props) => {
   const route = useRouter();
 
   const onFinish = (values: { desc: string }) => {
+    console.log(values);
     setModalPost(false);
     return route.push('/posts');
   };
@@ -42,6 +43,7 @@ export const CreatePost = (props: Props) => {
               <TextArea placeholder='What is happening?' autoSize />
             </Form.Item>
             <Form.Item
+              // valuePropName='fileList'
               name='fileList'
               rules={[{ required: true, message: 'Please upload image!' }]}
             >

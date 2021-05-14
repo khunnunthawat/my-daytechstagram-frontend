@@ -18,9 +18,6 @@ const MainLayout = ({ children }: any) => {
             <Menu.Item key='2'>
               <Link href='/posts'>Page</Link>
             </Menu.Item>
-            <Menu.Item key='3'>
-              <Link href='/posts/create'>Post</Link>
-            </Menu.Item>
           </Menu>
           <Content style={{ padding: '0 50px', margin: '50px 0' }}>
             {children}
