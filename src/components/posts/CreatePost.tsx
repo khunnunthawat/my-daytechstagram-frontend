@@ -39,6 +39,7 @@ export const CreatePost = (props: Props) => {
               rules={[
                 { required: true, message: 'Please input text descripton!' },
               ]}
+              style={{ marginBottom: 12 }}
             >
               <TextArea placeholder='What is happening?' autoSize />
             </Form.Item>
@@ -46,6 +47,7 @@ export const CreatePost = (props: Props) => {
               // valuePropName='fileList'
               name='fileList'
               rules={[{ required: true, message: 'Please upload image!' }]}
+              style={{ marginBottom: 12 }}
             >
               <Upload listType='picture' maxCount={1}>
                 <Button icon={<UploadOutlined />} className='rounded'>

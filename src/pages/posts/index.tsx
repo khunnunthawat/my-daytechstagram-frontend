@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Card } from '@/components/layouts/Card';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '@/components/recoil/atom';
+import { CreatePost } from '@/components/posts/CreatePost';
 
 interface Props {}
 
@@ -17,7 +18,43 @@ const posts = () => {
         <title>Posts</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div className='flex flex-wrap items-center lg:justify-center'>
+      <div className='flex justify-center px-4'>
+        <div className='flex'>
+          <div className='flex flex-col'>
+            <div className='flex justify-between px-8 py-4 border-gray-300'>
+              <h2 className='text-lg text-gray-900 title-font'>
+                Daytechstagram
+              </h2>
+              <div className='md:w-3/5 md:pl-6'>
+                <div className='flex float-right'>
+                  <Button
+                    type='primary'
+                    onClick={() => {
+                      setModalPost(true);
+                    }}
+                    className='p-1 px-4 font-medium text-white rounded-md ml-2 float-right'
+                  >
+                    <Link shallow={true} href='/posts/create'>
+                      New Post
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <CreatePost />
+            </div>
+
+            <div className='flex flex-col flex-grow w-full'>
+              <Card />
+              <Card />
+              <Card />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className='flex items-center lg:justify-center w-full'>
         <h2 className='text-xl text-gray-900 font-medium title-font'>
           Daytechstagram
         </h2>
@@ -37,8 +74,7 @@ const posts = () => {
           </div>
         </div>
       </div>
-      <Card />
-      
+      <Card /> */}
     </>
   );
 };

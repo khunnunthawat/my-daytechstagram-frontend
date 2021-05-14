@@ -1,11 +1,6 @@
 import { atom } from 'recoil';
 
-export const userFromTypeState = atom<string>({
-  key: 'userCheck',
-  default: 'signup',
-});
-
 export const createPostState = atom({
-  key: 'createPost',
+  key: 'createpoststate',
   default: false,
 });
