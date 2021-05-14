@@ -11,7 +11,7 @@ export const CreateComment = (props: Props) => {
       <Form>
         <div className='flex lg:justify-center'>
           <div className='w-full mx-2 p-4'>
-            <Form.Item>
+            <Form.Item style={{ marginBottom: 0 }}>
               <div className='flex self-center'>
                 <TextArea
                   className='placeholder-gray-400'

@@ -10,8 +10,9 @@ import { CreatePost } from '@/components/posts/CreatePost';
 interface Props {}
 
 const posts = () => {
-  const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
+  const [isModalPost, setModalPost] = useRecoilState(createPostState);
+  
   return (
     <>
       <Head>
@@ -48,33 +49,10 @@ const posts = () => {
             <div className='flex flex-col flex-grow w-full'>
               <Card />
               <Card />
-              <Card />
             </div>
           </div>
         </div>
       </div>
-
-      {/* <div className='flex items-center lg:justify-center w-full'>
-        <h2 className='text-xl text-gray-900 font-medium title-font'>
-          Daytechstagram
-        </h2>
-        <div className='md:w-3/5 md:pl-6'>
-          <div className='flex float-right'>
-            <Button
-              type='primary'
-              onClick={() => {
-                setModalPost(true);
-              }}
-              className='p-1 px-4 font-medium text-white rounded-md ml-2 float-right'
-            >
-              <Link shallow={true} href='/posts/create'>
-                New Post
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </div>
-      <Card /> */}
     </>
   );
 };
