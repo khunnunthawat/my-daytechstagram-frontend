@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { CreatePost } from '@/components/posts/CreatePost';
 
 interface Props {}
 
@@ -10,7 +11,7 @@ const create = (props: Props) => {
         <title>Create Post</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <div>CreatePost</div>
+      <CreatePost />
     </>
   );
 };

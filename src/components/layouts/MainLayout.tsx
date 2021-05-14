@@ -22,7 +22,7 @@ const MainLayout = ({ children }: any) => {
               <Link href='/posts/create'>Post</Link>
             </Menu.Item>
           </Menu>
-          <Content style={{ padding: '0 50px', margin: '100px 0' }}>
+          <Content style={{ padding: '0 50px', margin: '50px 0' }}>
             {children}
           </Content>
           <Footer style={{ textAlign: 'center' }}>
