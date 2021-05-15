@@ -1,14 +1,27 @@
 import React from 'react';
 import { Input, Button, Form } from 'antd';
+import { useRouter } from 'next/router';
 
 const { TextArea } = Input;
 
 interface Props {}
 
 export const CreateComment = (props: Props) => {
+
+  const route = useRouter();
+  
+    const onFinish = (values: { desc: string }) => {
+      console.log(values);
+      return route.push('/posts');
+    };
+  
   return (
     <>
-      <Form>
+      <Form
+        name='creatcommentForm'
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+      >
         <div className='flex lg:justify-center'>
           <div className='w-full mx-2 p-4'>
             <Form.Item style={{ marginBottom: 0 }}>

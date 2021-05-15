@@ -1,15 +1,31 @@
 import React from 'react';
-import { Form, Button, Input } from 'antd';
+import { Form } from 'antd';
 import { EditTwoTone, DeleteTwoTone } from '@ant-design/icons';
-
-const { TextArea } = Input;
+import { useRouter } from 'next/router';
+import { useRecoilState } from 'recoil';
+import { editCommentState } from '../recoil/atom';
+import Link from 'next/link';
 
 interface Props {}
 
 export const Comments = (props: Props) => {
+  const [isModalEditComment, setModalEditComment] =
+    useRecoilState(editCommentState);
+
+  const route = useRouter();
+
+  const onFinish = (values: { desc: string }) => {
+    console.log(values);
+    return route.push('/posts');
+  };
+
   return (
     <>
-      <Form>
+      <Form
+        name='cardForm'
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+      >
         <div className='border-b border-gray-100'></div>
         <div className='flex max-w-lg bg-white border-l-8'>
           <div className='flex items-center lg:justify-center w-full'>
@@ -28,7 +44,16 @@ export const Comments = (props: Props) => {
                 </div>
                 <div className='flex ml-auto mr-2'>
                   <div className='text-sm space-x-4'>
-                    <EditTwoTone twoToneColor='#1890ff' />
+                    <Link shallow={true} href='/comments/edit'>
+                      <EditTwoTone
+                        key='delPost'
+                        onClick={() => {
+                          setModalEditComment(true);
+                        }}
+                        twoToneColor='#1890ff'
+                        
+                      />
+                    </Link>
                     <DeleteTwoTone twoToneColor='#f759ab' />
                   </div>
                 </div>
@@ -43,5 +68,3 @@ export const Comments = (props: Props) => {
     </>
   );
 };
-
-//border-l-8 sm:py-8 border-violet-400 text-blue-500

@@ -10,9 +10,8 @@ import { CreatePost } from '@/components/posts/CreatePost';
 interface Props {}
 
 const posts = () => {
-
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
-  
+
   return (
     <>
       <Head>
@@ -47,7 +46,6 @@ const posts = () => {
             </div>
 
             <div className='flex flex-col flex-grow w-full'>
-              <Card />
               <Card />
             </div>
           </div>
