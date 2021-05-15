@@ -2,11 +2,16 @@ import React from 'react';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Link from 'next/link';
+import { userAxios } from '../../pages/api/backendApi';
+import router from 'next/router';
+
+const cookieCutter = require('cookie-cutter');
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 10 },
 };
+
 const tailLayout = {
   wrapperCol: { offset: 8, span: 16 },
 };
@@ -17,8 +22,38 @@ interface UserFormProps {
 
 export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
   console.log(checkUser);
-  const onFinish = (values: any) => {
+
+  const onFinish = async (values: any) => {
     console.log('Received values of form: ', values);
+    if (checkUser === 'signup') {
+      try {
+        const params = new URLSearchParams();
+        params.append('username', values.username);
+        params.append('password', values.password);
+        await userAxios.post('/user/signup', params);
+        return router.push('/signin');
+      } catch (e) {
+        console.log('e', e.response);
+        if (e.response.data.statusCode == 409) {
+          alert('username is already exits');
+        } else if (e.response.data.statusCode == 400) {
+          alert('password is to week');
+        }
+      }
+    } else if (checkUser === 'signin') {
+      try {
+        const params = new URLSearchParams();
+        params.append('username', values.username);
+        params.append('password', values.password);
+
+        const { data } = await userAxios.post('/user/signin', params);
+        console.log(data);
+        cookieCutter.set('jwt', data.token);
+        return router.push('/posts');
+      } catch (e) {
+        console.log('e', e.response);
+      }
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -60,6 +95,11 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
                 name='password'
                 rules={[
                   { required: true, message: 'Please input your password!' },
+                  {
+                    pattern:
+                      /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/,
+                    message: 'password too weak',
+                  },
                 ]}
               >
                 <Input.Password

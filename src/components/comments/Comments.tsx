@@ -27,7 +27,7 @@ export const Comments = (props: Props) => {
         onFinish={onFinish}
       >
         <div className='border-b border-gray-100'></div>
-        <div className='flex max-w-lg bg-white border-l-8'>
+        <div className='flex max-w-lg bg-white border-l-4'>
           <div className='flex items-center lg:justify-center w-full'>
             <div className='w-full'>
               <div className='flex items-center justify-between px-2 py-3 mx-3'>

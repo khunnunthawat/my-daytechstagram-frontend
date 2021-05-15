@@ -1,7 +1,11 @@
 ###
+  npminstall :
   npx create-next-app --example with-tailwindcss {{APP_NAME}}
-  npm install --save-dev typescript @types/react @types/node
-  npm install antd
+  npm i --save-dev typescript @types/react @types/node
+  npm i antd
+  npm i axios
+  npm i cookie-cutter
+
   mkdir src
   move : folder page > src
   touch tsconfig.json
