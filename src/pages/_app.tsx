@@ -6,11 +6,11 @@ import MainLayout from '@/components/layouts/MainLayout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <MainLayout>
-      <RecoilRoot>
+    <RecoilRoot>
+      <MainLayout>
         <Component {...pageProps} />
-      </RecoilRoot>
-    </MainLayout>
+      </MainLayout>
+    </RecoilRoot>
   );
 }
 
