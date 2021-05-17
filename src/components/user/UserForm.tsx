@@ -6,16 +6,6 @@ import { userAxios } from '../../pages/api/backendApi';
 import router from 'next/router';
 
 const cookieCutter = require('cookie-cutter');
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 10 },
-};
-
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 },
-};
-
 interface UserFormProps {
   checkUser: string;
 }
@@ -30,10 +20,12 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
         const params = new URLSearchParams();
         params.append('username', values.username);
         params.append('password', values.password);
+
         await userAxios.post('/user/signup', params);
-        return router.push('/signin');
+        // return router.push('/signin');
+
       } catch (e) {
-        console.log('e', e.response);
+        // console.log('e', e.response);
         if (e.response.data.statusCode == 409) {
           alert('username is already exits');
         } else if (e.response.data.statusCode == 400) {
@@ -41,19 +33,21 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
         }
       }
     } else if (checkUser === 'signin') {
+      console.log('test');
       try {
         const params = new URLSearchParams();
         params.append('username', values.username);
         params.append('password', values.password);
 
         const { data } = await userAxios.post('/user/signin', params);
-        console.log(data);
+        // console.log(data);
         cookieCutter.set('jwt', data.token);
         return router.push('/posts');
       } catch (e) {
         console.log('e', e.response);
       }
     }
+    console.log('Success:', values);
   };
 
   const onFinishFailed = (errorInfo: any) => {

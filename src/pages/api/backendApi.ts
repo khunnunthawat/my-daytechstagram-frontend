@@ -14,6 +14,6 @@ export const userAxios = axios.create({
 //   },
 // });
 
-export const postAxios = axios.create({
+export const Axios = axios.create({
   baseURL: 'http://localhost:3000',
 });

@@ -14,6 +14,10 @@ export interface PostProps {
   image: string;
   created: string;
   updated: string;
+  user: {
+    id: number;
+    username: string;
+  };
 }
 
 export interface CommentProps {
@@ -22,7 +26,6 @@ export interface CommentProps {
   created: string;
   updated: string;
 }
-
 
 export interface MainLayoutProps {
   children: JSX.Element & ReactNode;

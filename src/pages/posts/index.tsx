@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head';
 import { Button } from 'antd';
 import Link from 'next/link';
 import { CardPosts } from '@/components/layouts/CardPosts';
 import { useRecoilState } from 'recoil';
-import { createPostState } from '@/components/recoil/atom';
+import { createPostState, postsState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
 import { jwtProps } from '../../components/types/index';
-import { postAxios } from '../api/backendApi';
+import { Axios } from '../api/backendApi';
 
-const posts: React.FC<jwtProps> = ({ jwt }) => {
+interface postsProps {
+  jwt: string;
+  feeds: any;
+}
+
+const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
   console.log(jwt);
+  const [posts, setPosts] = useRecoilState(postsState);
+
+  useEffect(() => {                     //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
+    setPosts(feeds);
+    console.log('feeds ', feeds);
+  }, [feeds]);
 
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
   
@@ -47,7 +58,7 @@ const posts: React.FC<jwtProps> = ({ jwt }) => {
             </div>
             {/* Post List */}
             <div className='flex flex-col flex-grow w-full'>
-              <CardPosts />
+              <CardPosts posts={posts} />
             </div>
           </div>
         </div>
@@ -56,27 +67,54 @@ const posts: React.FC<jwtProps> = ({ jwt }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const cookies = new Cookies(req, res);
-  const jwt = cookies.get('jwt');
+// export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+//   const cookies = new Cookies(req, res);
+//   const jwt = cookies.get('jwt');
 
+//   if (!jwt) {
+//     res.writeHead(302, { Location: '/signin' });
+//     res.end();
+//   }
+
+//     // const { data } = await postAxios.get('/posts', {
+//     //   headers: {
+//     //     Authorization: `Bearer ${jwt}`,
+//     //   },
+//     // });
+
+//   return {
+//     props: {
+//       jwt,
+//       // feeds: data,
+//     },
+//   };
+// };
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  // Create a cookies instance
+  const cookies = new Cookies(req, res)
+  const jwt = cookies.get('jwt')
+
+  // if not found cookie, just redirect to sign in page
   if (!jwt) {
-    res.writeHead(302, { Location: '/signin' });
-    res.end();
+    res.writeHead(302, { Location: '/signin' }) //302 is a just code to redirect
+    res.end()
   }
 
-    // const { data } = await postAxios.get('/posts', {
-    //   headers: {
-    //     Authorization: `Bearer ${jwt}`,
-    //   },
-    // });
+  const { data } = await Axios.get('/posts', {
+    //get post ตาม path เเล้วใส่ใน data
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  });
+
 
   return {
-    props: {
-      jwt,
-      // feeds: data,
-    },
-  };
-};
+      props: {
+        jwt,
+        feeds: data, //  เอา data ใส่ ใน feeds 
+      }
+  }
+}
 
 export default posts;

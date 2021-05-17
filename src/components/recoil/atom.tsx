@@ -19,3 +19,7 @@ export const editCommentState = atom<boolean>({
   key: 'editcomment',
   default: false,
 });
+export const postsState = atom<[]>({
+  key: 'postsST',
+  default: [],
+});

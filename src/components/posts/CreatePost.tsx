@@ -4,7 +4,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '../recoil/atom';
 import router, { useRouter } from 'next/router';
-import { postAxios } from '../../pages/api/backendApi';
+import { Axios } from '../../pages/api/backendApi';
 
 const { TextArea } = Input;
 
@@ -14,22 +14,22 @@ export const CreatePost = () => {
 
   const onFinish = async (values: { desc: string }): Promise<boolean> => {
     console.log(values);
-    if (values) {
-      try {
-        const params = new URLSearchParams();
-        params.append('desc', values.desc);
-        // params.append('desc', values.image);
-        await postAxios.get('/posts/new');
-        return router.push('/posts');
-      } catch (e) {
-        console.log('e', e.response);
-        if (e.response.data.statusCode == 409) {
-          alert('username is already exits');
-        } else if (e.response.data.statusCode == 400) {
-          alert('password is to week');
-        }
-      }
-    }
+    // if (values) {
+    //   try {
+    //     const params = new URLSearchParams();
+    //     params.append('desc', values.desc);
+    //     // params.append('desc', values.image);
+    //     await Axios.get('/posts/new');
+    //     return router.push('/posts');
+    //   } catch (e) {
+    //     console.log('e', e.response);
+    //     if (e.response.data.statusCode == 409) {
+    //       alert('username is already exits');
+    //     } else if (e.response.data.statusCode == 400) {
+    //       alert('password is to week');
+    //     }
+    //   }
+    // }
     setModalPost(false);
     return route.push('/posts');
   };

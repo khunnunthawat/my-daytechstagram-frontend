@@ -17,7 +17,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
   const handleLogout = () => {
     cookieCutter.set('jwt', '', { expires: new Date(0) });
     setLogin(true);
-    return route.push('/signin');
+    // return route.push();
   };
 
   return (
