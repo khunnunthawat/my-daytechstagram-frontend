@@ -5,13 +5,16 @@ import Link from 'next/link';
 import { Card } from '@/components/layouts/Card';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '@/components/recoil/atom';
-import { CreatePost } from '@/components/posts/CreatePost';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
 import { jwtProps } from '../../components/types/index';
+import { postAxios } from '../api/backendApi';
 
-const posts: React.FC<jwtProps> = () => {
+const posts: React.FC<jwtProps> = ({ jwt }) => {
+  console.log(jwt);
+
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
+  
   return (
     <>
       <Head>
@@ -62,9 +65,16 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     res.end();
   }
 
+    // const { data } = await postAxios.get('/posts', {
+    //   headers: {
+    //     Authorization: `Bearer ${jwt}`,
+    //   },
+    // });
+
   return {
     props: {
       jwt,
+      // feeds: data,
     },
   };
 };

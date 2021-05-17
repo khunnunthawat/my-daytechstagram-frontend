@@ -32,6 +32,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
                     User
                   </Link>
                 </Menu.Item>
+                <Menu.Item key='2'>
+                  <button className='text-red-500' onClick={handleLogout}>
+                    Logout
+                  </button>
+                </Menu.Item>
               </Menu>
             ) : (
               <Menu theme='light' mode='horizontal' defaultSelectedKeys={['1']}>
