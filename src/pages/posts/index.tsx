@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import { Button } from 'antd';
 import Link from 'next/link';
-import { Card } from '@/components/layouts/Card';
+import { CardPosts } from '@/components/layouts/CardPosts';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
@@ -47,7 +47,7 @@ const posts: React.FC<jwtProps> = ({ jwt }) => {
             </div>
             {/* Post List */}
             <div className='flex flex-col flex-grow w-full'>
-              <Card />
+              <CardPosts />
             </div>
           </div>
         </div>

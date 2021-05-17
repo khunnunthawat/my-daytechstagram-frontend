@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 interface Props {}
 
-export const Card = (props: Props) => {
+export const CardPosts = (props: Props) => {
   const [isModalEditPost, setModalEditPost] =
     useRecoilState(createCommentState);
 
