@@ -10,7 +10,7 @@ export const CreateComment = (props: Props) => {
 
   const route = useRouter();
   
-    const onFinish = (values: { desc: string }) => {
+    const onFinish = (values: { desc: string }): Promise<boolean> => {
       console.log(values);
       return route.push('/posts');
     };

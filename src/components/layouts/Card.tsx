@@ -28,7 +28,7 @@ export const Card = (props: Props) => {
               </div>
               <div className='flex flex-col mb-2 ml-4 mt-1'>
                 <div className='text-gray-600 text-sm font-semibold'>
-                  Fal Nunthawat
+                  Daytech
                 </div>
                 <div className='flex w-full mt-1'>
                   <div className='text-blue-600 font-base text-xs mr-1'>

@@ -5,6 +5,8 @@
   npm i antd
   npm i axios
   npm i cookie-cutter
+  npm i --save cookies
+  npm i --save-dev @types/cookies
 
   mkdir src
   move : folder page > src

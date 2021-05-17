@@ -14,13 +14,13 @@ export const EditPost = (props: Props) => {
     useRecoilState(createCommentState);
   const route = useRouter();
 
-  const onFinish = (values: { desc: string }) => {
+  const onFinish = (values: { desc: string }): Promise<boolean> => {
     console.log(values);
     setModalEditPost(false);
     return route.push('/posts');
   };
 
-  const handleCancel = () => {
+  const handleCancel = (): Promise<boolean> => {
     setModalEditPost(false);
     return route.push('/posts');
   };

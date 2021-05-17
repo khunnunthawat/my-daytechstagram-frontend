@@ -13,3 +13,10 @@ export const userAxios = axios.create({
 //     'Authorization': `Bearer ${token}`,
 //   },
 // });
+
+export const postAxios = axios.create({
+  baseURL: 'http://localhost:3000',
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});

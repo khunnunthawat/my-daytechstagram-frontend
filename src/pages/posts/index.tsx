@@ -6,12 +6,12 @@ import { Card } from '@/components/layouts/Card';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '@/components/recoil/atom';
 import { CreatePost } from '@/components/posts/CreatePost';
+import { GetServerSideProps } from 'next';
+import Cookies from 'cookies';
+import { jwtProps } from '../../components/types/index';
 
-interface Props {}
-
-const posts = () => {
+const posts: React.FC<jwtProps> = () => {
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
-
   return (
     <>
       <Head>
@@ -21,6 +21,7 @@ const posts = () => {
       <div className='flex justify-center px-4'>
         <div className='flex'>
           <div className='flex flex-col'>
+            {/* New Post */}
             <div className='flex justify-between px-8 py-4 border-gray-300'>
               <h2 className='text-lg text-gray-900 title-font'>
                 Daytechstagram
@@ -41,10 +42,7 @@ const posts = () => {
                 </div>
               </div>
             </div>
-            <div>
-              <CreatePost />
-            </div>
-
+            {/* Post List */}
             <div className='flex flex-col flex-grow w-full'>
               <Card />
             </div>
@@ -53,6 +51,22 @@ const posts = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const cookies = new Cookies(req, res);
+  const jwt = cookies.get('jwt');
+
+  if (!jwt) {
+    res.writeHead(302, { Location: '/signin' });
+    res.end();
+  }
+
+  return {
+    props: {
+      jwt,
+    },
+  };
 };
 
 export default posts;

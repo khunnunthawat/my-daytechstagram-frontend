@@ -14,7 +14,7 @@ export const Comments = (props: Props) => {
 
   const route = useRouter();
 
-  const onFinish = (values: { desc: string }) => {
+  const onFinish = (values: { desc: string }): Promise<boolean> => {
     console.log(values);
     return route.push('/posts');
   };
@@ -38,7 +38,7 @@ export const Comments = (props: Props) => {
                     src='https://images.unsplash.com/profile-fb-1547572180-93a860f0a32b.jpg?auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff'
                   />
                   <div className='text-gray-600 text-sm font-medium ml-4'>
-                    Fal Nunthawat
+                    Daytech
                   </div>
                   <div className='text-blue-500 text-xs ml-3'>9:47 PM</div>
                 </div>
@@ -51,7 +51,6 @@ export const Comments = (props: Props) => {
                           setModalEditComment(true);
                         }}
                         twoToneColor='#1890ff'
-                        
                       />
                     </Link>
                     <DeleteTwoTone twoToneColor='#f759ab' />

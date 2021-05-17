@@ -1,16 +1,21 @@
 import { atom } from 'recoil';
 
-export const createPostState = atom({
-  key: 'createpoststate',
+export const loginState = atom<boolean>({
+  key: 'loginstate',
   default: false,
 });
 
-export const createCommentState = atom({
-  key: 'createcommentstate',
+export const createPostState = atom<boolean>({
+  key: 'createpost',
   default: false,
 });
 
-export const editCommentState = atom({
-  key: 'editcommentstate',
+export const createCommentState = atom<boolean>({
+  key: 'createcomment',
+  default: false,
+});
+
+export const editCommentState = atom<boolean>({
+  key: 'editcomment',
   default: false,
 });

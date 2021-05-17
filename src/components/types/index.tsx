@@ -1,7 +1,11 @@
+import { ReactNode } from 'react';
 import create from '../../pages/posts/create';
 export interface UserProps {
   username: string;
   password: string;
+}
+export interface jwtProps {
+  jwt: string;
 }
 
 export interface PostProps {
@@ -20,3 +24,6 @@ export interface CommentProps {
 }
 
 
+export interface MainLayoutProps {
+  children: JSX.Element & ReactNode;
+}

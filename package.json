@@ -12,12 +12,14 @@
     "axios": "^0.21.1",
     "babel-plugin-import": "^1.13.3",
     "cookie-cutter": "^0.2.0",
+    "cookies": "^0.8.0",
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "recoil": "^0.2.0"
   },
   "devDependencies": {
+    "@types/cookies": "^0.7.6",
     "@types/node": "^15.0.3",
     "@types/react": "^17.0.5",
     "autoprefixer": "^10.0.4",
