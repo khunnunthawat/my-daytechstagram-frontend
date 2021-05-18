@@ -26,6 +26,7 @@ export interface FeedPostsProps {
 }
 export interface CardPostProps {
   posts: PostProps[];
+  onDelete: (id: number) => void;
 }
 export interface CommentProps {
   id: number;

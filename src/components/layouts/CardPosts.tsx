@@ -7,9 +7,13 @@ import { createCommentState } from '../recoil/atom';
 import Link from 'next/link';
 import { CardPostProps } from '../types';
 
-export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
+export const CardPosts: React.FC<CardPostProps> = ({ posts, onDelete }) => {
   const [isModalEditPost, setModalEditPost] =
     useRecoilState(createCommentState);
+  
+  const onDeletePost = (id: number) => {
+    onDelete(id);
+  }
 
   const renderedFeed = posts.map((post) => {
     return (
@@ -57,7 +61,7 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
                     </Link>
                     <DeleteTwoTone
                       key='delPost'
-                      onClick={() => {}}
+                      onClick={() => onDeletePost(post.id)}
                       twoToneColor='#f759ab'
                     />
                   </div>

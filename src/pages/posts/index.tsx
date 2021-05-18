@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Head from 'next/head';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import Link from 'next/link';
 import { CardPosts } from '@/components/layouts/CardPosts';
 import { useRecoilState } from 'recoil';
@@ -8,15 +8,12 @@ import { createPostState, postsState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
 import { Axios } from '../api/backendApi';
+import { FeedPostsProps } from '@/components/types';
 
-interface postsProps {
-  jwt: string;
-  feeds: any;
-}
-
-const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
+const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
   console.log(jwt);
   const [posts, setPosts] = useRecoilState(postsState);
+  const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
   useEffect(() => {
     //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
@@ -24,7 +21,22 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
     // console.log('feeds ', feeds);
   }, [feeds]);
 
-  const [isModalPost, setModalPost] = useRecoilState(createPostState);
+  const onDelete = async (id: number) => {
+    try {
+      await Axios.delete(`/posts/${id}`, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      const temp: any = posts.filter((post: any) => post.id !== id);
+      setPosts(temp);
+      message.success('Successfully delete a post');
+
+      // set posts
+    } catch (error) {
+      message.error('Unable to delete a post');
+    }
+  };
 
   return (
     <>
@@ -58,7 +70,7 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
             </div>
             {/* Post List */}
             <div className='flex flex-col flex-grow w-full'>
-              <CardPosts posts={posts} />
+              <CardPosts posts={posts} onDelete={onDelete} />
             </div>
           </div>
         </div>
