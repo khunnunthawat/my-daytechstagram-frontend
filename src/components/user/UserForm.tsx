@@ -4,11 +4,9 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import { userAxios } from '../../pages/api/backendApi';
 import router from 'next/router';
+import { UserFormProps } from '../types';
 
 const cookieCutter = require('cookie-cutter');
-interface UserFormProps {
-  checkUser: string;
-}
 
 export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
   console.log(checkUser);

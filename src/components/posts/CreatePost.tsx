@@ -4,7 +4,6 @@ import { UploadOutlined } from '@ant-design/icons';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '../recoil/atom';
 import router, { useRouter } from 'next/router';
-import { Axios } from '../../pages/api/backendApi';
 
 const { TextArea } = Input;
 
@@ -18,11 +17,11 @@ export const CreatePost: React.FC<FormPostProps> = ({ onPost }) => {
   const [desc, setDesc] = useState('');
 
   const onFinish = async (values: {
-    desc: string;
+    descPost: string;
     fileList: any;
   }): Promise<boolean> => {
     console.log('Succeess : ', values);
-    onPost(values.desc, values.fileList.file.originFileObj);
+    onPost(values.descPost, values.fileList.file.originFileObj);
     setDesc('');
     setModalPost(false);
     return route.push('/posts');  

@@ -4,28 +4,25 @@ import { Button } from 'antd';
 import Link from 'next/link';
 import { CardPosts } from '@/components/layouts/CardPosts';
 import { useRecoilState } from 'recoil';
-import { createPostState, postsState } from '@/components/recoil/atom';
+import { createPostState, loginState, postsState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
-import { jwtProps } from '../../components/types/index';
+import { postsProps } from '../../components/types/index';
 import { Axios } from '../api/backendApi';
-
-interface postsProps {
-  jwt: string;
-  feeds: any;
-}
 
 const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
   console.log(jwt);
   const [posts, setPosts] = useRecoilState(postsState);
+  const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
-  useEffect(() => {                     //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
+  useEffect(() => {
+    //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
     setPosts(feeds);
     // console.log('feeds ', feeds);
   }, [feeds]);
 
-  const [isModalPost, setModalPost] = useRecoilState(createPostState);
   
+
   return (
     <>
       <Head>
@@ -66,29 +63,6 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
     </>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-//   const cookies = new Cookies(req, res);
-//   const jwt = cookies.get('jwt');
-
-//   if (!jwt) {
-//     res.writeHead(302, { Location: '/signin' });
-//     res.end();
-//   }
-
-//     // const { data } = await postAxios.get('/posts', {
-//     //   headers: {
-//     //     Authorization: `Bearer ${jwt}`,
-//     //   },
-//     // });
-
-//   return {
-//     props: {
-//       jwt,
-//       // feeds: data,
-//     },
-//   };
-// };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   // Create a cookies instance
