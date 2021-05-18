@@ -2,9 +2,9 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { MainLayoutProps } from '../types';
 import { loginState } from '../recoil/atom';
 import { useRecoilState } from 'recoil';
+import { MainLayoutProps } from '../types/index';
 
 const cookieCutter = require('cookie-cutter');
 const { Content, Footer } = Layout;
@@ -32,11 +32,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
                     User
                   </Link>
                 </Menu.Item>
-                {/* <Menu.Item key='2'>
-                  <button className='text-red-500' onClick={handleLogout}>
-                    Logout
-                  </button>
-                </Menu.Item> */}
               </Menu>
             ) : (
               <Menu theme='light' mode='horizontal' defaultSelectedKeys={['1']}>

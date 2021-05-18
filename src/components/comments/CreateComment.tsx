@@ -4,9 +4,7 @@ import { useRouter } from 'next/router';
 
 const { TextArea } = Input;
 
-interface Props {}
-
-export const CreateComment = (props: Props) => {
+export const CreateComment = () => {
 
   const route = useRouter();
   
@@ -27,12 +25,15 @@ export const CreateComment = (props: Props) => {
             <Form.Item style={{ marginBottom: 0 }}>
               <div className='flex self-center'>
                 <TextArea
-                  className='placeholder-gray-400'
+                  className='placeholder-gray-400 rounded-md'
                   placeholder='Comment...'
                   autoSize
                 />
                 <Form.Item>
-                  <Button htmlType='submit' className='rounded-sm'>
+                  <Button
+                    htmlType='submit'
+                    className='rounded-md border-none shadow-none'
+                  >
                     Comment
                   </Button>
                 </Form.Item>

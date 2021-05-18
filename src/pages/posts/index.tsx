@@ -7,16 +7,10 @@ import { useRecoilState } from 'recoil';
 import { createPostState, postsState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
-import { jwtProps } from '../../components/types/index';
+import { FeedPostsProps } from '../../components/types/index';
 import { Axios } from '../api/backendApi';
 
-interface postsProps {
-  jwt: string;
-  feeds: any;
-}
-
-const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
-  console.log(jwt);
+const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
   const [posts, setPosts] = useRecoilState(postsState);
 
   useEffect(() => {
@@ -50,9 +44,7 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
                     }}
                     className='p-1 px-4 font-medium text-white rounded-md ml-2 float-right'
                   >
-                    <Link shallow={true} href='/posts/create'>
-                      New Post
-                    </Link>
+                    <Link href='/posts/create'>New Post</Link>
                   </Button>
                 </div>
               </div>

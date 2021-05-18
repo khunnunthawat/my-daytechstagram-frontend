@@ -6,11 +6,11 @@ import { Comments } from '../comments/Comments';
 import { useRecoilState } from 'recoil';
 import { createCommentState } from '../recoil/atom';
 import Link from 'next/link';
-import { PostProps } from '../types';
+import { CardPostProps, PostProps } from '../types';
 
-interface CardPostProps {
-  posts: PostProps[];
-}
+// interface CardPostProps {
+//   posts: PostProps[];
+// }
 
 export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
   const [isModalEditPost, setModalEditPost] =
@@ -51,7 +51,7 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
                 </div>
                 <div className='flex ml-auto mr-2'>
                   <div className='text-lg space-x-4'>
-                    <Link shallow={true} href='/posts/edit'>
+                    <Link href='/posts/edit'>
                       <EditTwoTone
                         key='delPost'
                         onClick={() => {
@@ -73,12 +73,11 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
                   className='rounded-sm'
                   src={`http://localhost:3000/${post.image}`}
                 />
-                {/* src={`http://localhost:3000/${post.image}` */}
               </div>
               <div className='text-gray-900 text-base my-4 mx-4 px-2'>
                 {post.desc}
               </div>
-              <Comments />
+              {/* <Comments /> */}
               <CreateComment />
             </div>
           </div>
@@ -86,5 +85,5 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
       </>
     );
   });
-  return <div>{renderedFeed}</div>;
+  return <>{renderedFeed}</>;
 };

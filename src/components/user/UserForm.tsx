@@ -9,10 +9,10 @@ import { UserFormProps } from '../types';
 const cookieCutter = require('cookie-cutter');
 
 export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
-  console.log(checkUser);
+  console.log('Page URL : ', checkUser);
 
   const onFinish = async (values: any): Promise<boolean | undefined> => {
-    console.log('Received values of form: ', values);
+    console.log('CheckUser : ', values);
     if (checkUser === 'signup') {
       try {
         const params = new URLSearchParams();
@@ -21,7 +21,6 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
 
         await userAxios.post('/user/signup', params);
         // return router.push('/signin');
-
       } catch (e) {
         // console.log('e', e.response);
         if (e.response.data.statusCode == 409) {
@@ -31,14 +30,13 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
         }
       }
     } else if (checkUser === 'signin') {
-      console.log('test');
       try {
         const params = new URLSearchParams();
         params.append('username', values.username);
         params.append('password', values.password);
 
         const { data } = await userAxios.post('/user/signin', params);
-        // console.log(data);
+        console.log(data);
         cookieCutter.set('jwt', data.token);
         return router.push('/posts');
       } catch (e) {

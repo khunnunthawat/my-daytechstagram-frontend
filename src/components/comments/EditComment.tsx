@@ -7,9 +7,7 @@ import { useRouter } from 'next/router';
 
 const { TextArea } = Input;
 
-interface Props {}
-
-export const EditComment = (props: Props) => {
+export const EditComment = () => {
   const [isModalEditComment, setModalEditComment] =
     useRecoilState(editCommentState);
   const route = useRouter();

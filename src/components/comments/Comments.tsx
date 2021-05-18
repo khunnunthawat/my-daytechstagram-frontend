@@ -6,9 +6,7 @@ import { useRecoilState } from 'recoil';
 import { editCommentState } from '../recoil/atom';
 import Link from 'next/link';
 
-interface Props {}
-
-export const Comments = (props: Props) => {
+export const Comments = () => {
   const [isModalEditComment, setModalEditComment] =
     useRecoilState(editCommentState);
 

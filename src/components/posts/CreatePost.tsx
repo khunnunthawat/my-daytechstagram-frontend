@@ -3,7 +3,7 @@ import { Input, Upload, Button, Form, Modal } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useRecoilState } from 'recoil';
 import { createPostState } from '../recoil/atom';
-import router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
 const { TextArea } = Input;
 
@@ -20,7 +20,7 @@ export const CreatePost: React.FC<FormPostProps> = ({ onPost }) => {
     descPost: string;
     fileList: any;
   }): Promise<boolean> => {
-    console.log('Succeess : ', values);
+    // console.log('Succeess : ', values);
     onPost(values.descPost, values.fileList.file.originFileObj);
     setDesc('');
     setModalPost(false);
