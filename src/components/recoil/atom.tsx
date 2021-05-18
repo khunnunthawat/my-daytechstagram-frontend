@@ -10,6 +10,11 @@ export const createPostState = atom<boolean>({
   default: false,
 });
 
+export const editPostState = atom<boolean>({
+  key: 'editPost',
+  default: false,
+});
+
 export const createCommentState = atom<boolean>({
   key: 'createComment',
   default: false,

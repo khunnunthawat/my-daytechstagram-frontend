@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { EditTwoTone, DeleteTwoTone } from '@ant-design/icons';
 import { CreateComment } from '../comments/CreateComment';
 import { Comments } from '../comments/Comments';
@@ -6,14 +6,26 @@ import { useRecoilState } from 'recoil';
 import { createCommentState } from '../recoil/atom';
 import Link from 'next/link';
 import { CardPostProps } from '../types';
+import { useRouter } from 'next/router';
 
 export const CardPosts: React.FC<CardPostProps> = ({ posts, onDelete }) => {
   const [isModalEditPost, setModalEditPost] =
     useRecoilState(createCommentState);
+  const [toId, setToId] = useState(0);
+  const router = useRouter();
+
+// editPostState
   
+  const onEditPost = (id: number) => {
+    setToId(id);
+    setModalEditPost(true);
+    console.log('onEditPost id: ', id);
+    return router.push(`/posts/${id}/desc`);
+  };
+
   const onDeletePost = (id: number) => {
     onDelete(id);
-  }
+  };
 
   const renderedFeed = posts.map((post) => {
     return (
@@ -54,7 +66,7 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts, onDelete }) => {
                       <EditTwoTone
                         key='delPost'
                         onClick={() => {
-                          setModalEditPost(true);
+                          onEditPost(post.id);
                         }}
                         twoToneColor='#1890ff'
                       />
