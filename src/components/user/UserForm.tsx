@@ -8,11 +8,11 @@ import { UserFormProps } from '../types';
 
 const cookieCutter = require('cookie-cutter');
 
-export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
-  console.log('Page URL : ', checkUser);
+export const UserForm: React.FC<UserFormProps> = ({ checkPage }) => {
+  console.log('Page URL : ', checkPage);
 
   const onFinish = async (values: any): Promise<boolean | undefined> => {
-    if (checkUser === 'signup') {
+    if (checkPage === 'signup') {
       try {
         const params = new URLSearchParams();
         params.append('username', values.username);
@@ -29,18 +29,18 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
           alert('password is to week');
         }
       }
-    } else if (checkUser === 'signin') {
+    } else if (checkPage === 'signin') {
       try {
         const params = new URLSearchParams();
         params.append('username', values.username);
         params.append('password', values.password);
 
         const { data } = await userAxios.post('/user/signin', params);
-        console.log(data);
+        // console.log(data);
         cookieCutter.set('jwt', data.token);
         return router.push('/posts');
       } catch (e) {
-        console.log('e', e.response);
+        // console.log('e', e.response);
       }
     }
     console.log('Success:', values);
@@ -56,12 +56,12 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
         <div className='flex flex-col overflow-hidden bg-white rounded-md shadow-md max md:flex-row md:flex-1 lg:max-w-screen-md'>
           <div className='p-4 py-6 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly'>
             <div className='my-3 text-2xl font-bold tracking-wider text-center'>
-              <p>Daytech stagram</p>
+              <p>Eiffel stagram</p>
             </div>
           </div>
           <div className='p-5 bg-white md:flex-1'>
             <h3 className='my-4 text-2xl font-semibold text-gray-700'>
-              {checkUser === 'signin' ? 'Account Login' : 'Registration'}
+              {checkPage === 'signin' ? 'Account Login' : 'Registration'}
             </h3>
             <Form
               initialValues={{ remember: true }}
@@ -105,7 +105,7 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
                     <Checkbox>Remember me</Checkbox>
                   </Form.Item>
                   <div className='text-sm text-blue-600 hover:underline focus:text-blue-800'>
-                    {checkUser !== 'signin' ? (
+                    {checkPage !== 'signin' ? (
                       <Link href='/signin'>Already have an account ?</Link>
                     ) : (
                       <Link href='/signup'>Don't have an account?</Link>
@@ -115,7 +115,7 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
               </div>
               <div className='flex flex-col space-y-5 my-7'>
                 <Button size='large' type='primary' htmlType='submit'>
-                  {checkUser === 'signin' ? 'Login' : 'SignUp'}
+                  {checkPage === 'signin' ? 'Login' : 'SignUp'}
                 </Button>
               </div>
             </Form>

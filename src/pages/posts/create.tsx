@@ -58,6 +58,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     props: {
       jwt,
       feeds: data,
+      status: true,
     },
   };
 };

@@ -1,16 +1,11 @@
 import React from 'react';
 import { EditTwoTone, DeleteTwoTone } from '@ant-design/icons';
-// import { Posts } from '../posts/Posts';
 import { CreateComment } from '../comments/CreateComment';
-// import { Comments } from '../comments/Comments';
+import { Comments } from '../comments/Comments';
 import { useRecoilState } from 'recoil';
 import { createCommentState } from '../recoil/atom';
 import Link from 'next/link';
-import { PostProps } from '../types';
-
-interface CardPostProps {
-  posts: PostProps[];
-}
+import { CardPostProps } from '../types';
 
 export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
   const [isModalEditPost, setModalEditPost] =

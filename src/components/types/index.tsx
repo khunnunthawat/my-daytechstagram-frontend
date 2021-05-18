@@ -4,7 +4,7 @@ export interface UserProps {
   password: string;
 }
 export interface UserFormProps {
-  checkUser: string;
+  checkPage: string;
 }
 export interface jwtProps {
   jwt: any;

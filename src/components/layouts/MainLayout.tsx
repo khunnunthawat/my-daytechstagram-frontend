@@ -28,7 +28,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
             {login === true ? (
               <Menu theme='light' mode='horizontal' defaultSelectedKeys={['1']}>
                 <Menu.Item key='1'>
-                  <Link href='/signup' shallow={true}>
+                  <Link href='/signup'>
                     User
                   </Link>
                 </Menu.Item>
@@ -36,7 +36,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
             ) : (
               <Menu theme='light' mode='horizontal' defaultSelectedKeys={['1']}>
                 <Menu.Item key='1'>
-                  <Link href='/posts' shallow={true}>
+                  <Link href='/posts'>
                     Page
                   </Link>
                 </Menu.Item>
@@ -61,19 +61,3 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
 };
 
 export default MainLayout;
-
-//  <Menu theme='light' mode='horizontal' defaultSelectedKeys={['2']}>
-//    <Menu.Item key='1'>
-//      <Link href='/signup'>User</Link>
-//    </Menu.Item>
-//    <Menu.Item key='2'>
-//      <Link href='/posts'>Page</Link>
-//    </Menu.Item>
-//    <Menu.Item key='3'>
-//      <Link href='/singin'>
-//        <button className='text-red-500' onClick={handleLogout}>
-//          Logout
-//        </button>
-//      </Link>
-//    </Menu.Item>
-//  </Menu>
