@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Upload, Button, Form, Modal } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useRecoilState } from 'recoil';
@@ -8,37 +8,31 @@ import { Axios } from '../../pages/api/backendApi';
 
 const { TextArea } = Input;
 
-export const CreatePost = () => {
+interface FormPostProps {
+  onPost: (desc: string, file: any) => Promise<void>;
+}
+
+export const CreatePost: React.FC<FormPostProps> = ({ onPost }) => {
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
   const route = useRouter();
+  const [desc, setDesc] = useState('');
 
-  const onFinish = async (values: { desc: string }): Promise<boolean> => {
-    console.log(values);
-    // if (values) {
-    //   try {
-    //     const params = new URLSearchParams();
-    //     params.append('desc', values.desc);
-    //     // params.append('desc', values.image);
-    //     await Axios.get('/posts/new');
-    //     return router.push('/posts');
-    //   } catch (e) {
-    //     console.log('e', e.response);
-    //     if (e.response.data.statusCode == 409) {
-    //       alert('username is already exits');
-    //     } else if (e.response.data.statusCode == 400) {
-    //       alert('password is to week');
-    //     }
-    //   }
-    // }
+  const onFinish = async (values: {
+    desc: string;
+    fileList: any;
+  }): Promise<boolean> => {
+    console.log('Succeess : ', values);
+    onPost(values.desc, values.fileList.file.originFileObj);
+    setDesc('');
     setModalPost(false);
-    return route.push('/posts');
+    return route.push('/posts');  
   };
 
   const handleCancel = (): Promise<boolean> => {
     setModalPost(false);
     return route.push('/posts');
   };
-      
+
   return (
     <>
       <Modal visible={isModalPost} footer={null} onCancel={handleCancel}>
@@ -56,7 +50,11 @@ export const CreatePost = () => {
               ]}
               style={{ marginBottom: 12 }}
             >
-              <TextArea placeholder='What is happening?' autoSize />
+              <TextArea
+                onChange={(e) => setDesc(e.target.value)}
+                placeholder='What is happening?'
+                autoSize
+              />
             </Form.Item>
             <Form.Item
               // valuePropName='fileList'

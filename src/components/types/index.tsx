@@ -1,11 +1,10 @@
 import { ReactNode } from 'react';
-import create from '../../pages/posts/create';
 export interface UserProps {
   username: string;
   password: string;
 }
 export interface jwtProps {
-  jwt: string;
+  jwt: any;
 }
 
 export interface PostProps {

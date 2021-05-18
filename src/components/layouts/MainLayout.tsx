@@ -17,7 +17,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
   const handleLogout = () => {
     cookieCutter.set('jwt', '', { expires: new Date(0) });
     setLogin(true);
-    // return route.push();
+    return route.push('/signin');
   };
 
   return (
@@ -25,18 +25,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }: any) => {
       <div className='min-h-screen flex'>
         <Layout>
           <div className='shadow-sm'>
-            {login === false ? (
+            {login === true ? (
               <Menu theme='light' mode='horizontal' defaultSelectedKeys={['1']}>
                 <Menu.Item key='1'>
                   <Link href='/signup' shallow={true}>
                     User
                   </Link>
                 </Menu.Item>
-                <Menu.Item key='2'>
+                {/* <Menu.Item key='2'>
                   <button className='text-red-500' onClick={handleLogout}>
                     Logout
                   </button>
-                </Menu.Item>
+                </Menu.Item> */}
               </Menu>
             ) : (
               <Menu theme='light' mode='horizontal' defaultSelectedKeys={['1']}>

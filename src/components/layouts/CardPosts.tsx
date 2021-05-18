@@ -32,11 +32,11 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
                 </div>
                 <div className='flex flex-col mb-2 ml-4 mt-1'>
                   <div className='text-gray-600 text-sm font-semibold'>
-                    { post.user.username }
+                    {post.user.username}
                   </div>
                   <div className='flex w-full mt-1'>
                     <div className='text-blue-600 font-base text-xs mr-1'>
-                      {new Date(post.updated)
+                      {new Date(post.created)
                         .toLocaleDateString('us-TH', {
                           year: 'numeric',
                           month: 'short',
@@ -69,7 +69,11 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
                 </div>
               </div>
               <div className='my-2 mx-4 px-2'>
-                <img className='rounded-sm' src={post.image} />
+                <img
+                  className='rounded-sm'
+                  src={`http://localhost:3000/${post.image}`}
+                />
+                {/* src={`http://localhost:3000/${post.image}` */}
               </div>
               <div className='text-gray-900 text-base my-4 mx-4 px-2'>
                 {post.desc}

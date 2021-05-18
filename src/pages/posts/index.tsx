@@ -21,7 +21,7 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
 
   useEffect(() => {                     //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
     setPosts(feeds);
-    console.log('feeds ', feeds);
+    // console.log('feeds ', feeds);
   }, [feeds]);
 
   const [isModalPost, setModalPost] = useRecoilState(createPostState);

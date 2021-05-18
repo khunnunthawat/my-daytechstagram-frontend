@@ -58,7 +58,7 @@ export const Comments = (props: Props) => {
                 </div>
               </div>
               <div className='text-gray-900 text-sm mb-2 mx-4 px-2'>
-                Lorem Ipsum is simply dummy text
+                Comment.......
               </div>
             </div>
           </div>
