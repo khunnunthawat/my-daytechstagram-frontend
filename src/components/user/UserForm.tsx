@@ -12,7 +12,6 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
   console.log('Page URL : ', checkUser);
 
   const onFinish = async (values: any): Promise<boolean | undefined> => {
-    console.log('CheckUser : ', values);
     if (checkUser === 'signup') {
       try {
         const params = new URLSearchParams();
@@ -20,11 +19,12 @@ export const UserForm: React.FC<UserFormProps> = ({ checkUser }) => {
         params.append('password', values.password);
 
         await userAxios.post('/user/signup', params);
-        // return router.push('/signin');
+        return router.push('/signin');
       } catch (e) {
         // console.log('e', e.response);
         if (e.response.data.statusCode == 409) {
           alert('username is already exits');
+          return router.push('/signin');
         } else if (e.response.data.statusCode == 400) {
           alert('password is to week');
         }

@@ -7,13 +7,6 @@ export const userAxios = axios.create({
   },
 });
 
-// export const postAxios = axios.create({
-//   baseURL: 'http://localhost:3000',
-//   headers: {
-//     'Authorization': `Bearer ${token}`,
-//   },
-// });
-
 export const Axios = axios.create({
   baseURL: 'http://localhost:3000',
 });

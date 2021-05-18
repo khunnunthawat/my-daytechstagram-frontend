@@ -1,22 +1,22 @@
 import { atom } from 'recoil';
 
 export const loginState = atom<boolean>({
-  key: 'loginstate',
+  key: 'loginState',
   default: false,
 });
 
 export const createPostState = atom<boolean>({
-  key: 'createpost',
+  key: 'createPost',
   default: false,
 });
 
 export const createCommentState = atom<boolean>({
-  key: 'createcomment',
+  key: 'createComment',
   default: false,
 });
 
 export const editCommentState = atom<boolean>({
-  key: 'editcomment',
+  key: 'editComment',
   default: false,
 });
 export const postsState = atom<[]>({

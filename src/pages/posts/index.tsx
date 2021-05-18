@@ -7,10 +7,15 @@ import { useRecoilState } from 'recoil';
 import { createPostState, postsState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
-import { FeedPostsProps } from '../../components/types/index';
 import { Axios } from '../api/backendApi';
 
-const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
+interface postsProps {
+  jwt: string;
+  feeds: any;
+}
+
+const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
+  console.log(jwt);
   const [posts, setPosts] = useRecoilState(postsState);
 
   useEffect(() => {
@@ -44,7 +49,9 @@ const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
                     }}
                     className='p-1 px-4 font-medium text-white rounded-md ml-2 float-right'
                   >
-                    <Link href='/posts/create'>New Post</Link>
+                    <Link shallow={true} href='/posts/create'>
+                      New Post
+                    </Link>
                   </Button>
                 </div>
               </div>
@@ -61,11 +68,9 @@ const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  // Create a cookies instance
   const cookies = new Cookies(req, res);
   const jwt = cookies.get('jwt');
 
-  // if not found cookie, just redirect to sign in page
   if (!jwt) {
     res.writeHead(302, { Location: '/signin' }); //302 is a just code to redirect
     res.end();
