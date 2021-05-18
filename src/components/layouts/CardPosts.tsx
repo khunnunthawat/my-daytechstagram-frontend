@@ -78,7 +78,7 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
               <div className='text-gray-900 text-base my-4 mx-4 px-2'>
                 {post.desc}
               </div>
-              {/* <Comments /> */}
+              <Comments />
               <CreateComment />
             </div>
           </div>
@@ -86,5 +86,5 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts }) => {
       </>
     );
   });
-  return <>{renderedFeed}</>;
+  return <div>{renderedFeed}</div>;
 };

@@ -4,16 +4,20 @@ import { Button } from 'antd';
 import Link from 'next/link';
 import { CardPosts } from '@/components/layouts/CardPosts';
 import { useRecoilState } from 'recoil';
-import { createPostState, loginState, postsState } from '@/components/recoil/atom';
+import { createPostState, postsState } from '@/components/recoil/atom';
 import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
-import { postsProps } from '../../components/types/index';
+import { jwtProps } from '../../components/types/index';
 import { Axios } from '../api/backendApi';
+
+interface postsProps {
+  jwt: string;
+  feeds: any;
+}
 
 const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
   console.log(jwt);
   const [posts, setPosts] = useRecoilState(postsState);
-  const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
   useEffect(() => {
     //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
@@ -21,7 +25,7 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
     // console.log('feeds ', feeds);
   }, [feeds]);
 
-  
+  const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
   return (
     <>
@@ -66,13 +70,13 @@ const posts: React.FC<postsProps> = ({ jwt, feeds }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   // Create a cookies instance
-  const cookies = new Cookies(req, res)
-  const jwt = cookies.get('jwt')
+  const cookies = new Cookies(req, res);
+  const jwt = cookies.get('jwt');
 
   // if not found cookie, just redirect to sign in page
   if (!jwt) {
-    res.writeHead(302, { Location: '/signin' }) //302 is a just code to redirect
-    res.end()
+    res.writeHead(302, { Location: '/signin' }); //302 is a just code to redirect
+    res.end();
   }
 
   const { data } = await Axios.get('/posts', {
@@ -82,13 +86,12 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     },
   });
 
-
   return {
-      props: {
-        jwt,
-        feeds: data, //  เอา data ใส่ ใน feeds 
-      }
-  }
-}
+    props: {
+      jwt,
+      feeds: data, //  เอา data ใส่ ใน feeds
+    },
+  };
+};
 
 export default posts;

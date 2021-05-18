@@ -8,7 +8,7 @@ import router, { useRouter } from 'next/router';
 const { TextArea } = Input;
 
 interface FormPostProps {
-  onPost: (desc: string, file: any) => Promise<void>;
+  onPost: (descPost: string, file: any) => Promise<void>;
 }
 
 export const CreatePost: React.FC<FormPostProps> = ({ onPost }) => {
@@ -24,7 +24,7 @@ export const CreatePost: React.FC<FormPostProps> = ({ onPost }) => {
     onPost(values.descPost, values.fileList.file.originFileObj);
     setDesc('');
     setModalPost(false);
-    return route.push('/posts');  
+    return route.push('/posts');
   };
 
   const handleCancel = (): Promise<boolean> => {

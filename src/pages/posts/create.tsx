@@ -5,10 +5,9 @@ import { GetServerSideProps } from 'next';
 import Cookies from 'cookies';
 import { jwtProps } from '@/components/types';
 import { Axios } from '../api/backendApi';
-import { message, Alert } from 'antd';
+import { message } from 'antd';
 
 const create: React.FC<jwtProps> = ({ jwt }) => {
-
   const onPost = async (desc: string, file: any) => {
     try {
       // console.log('file', file);
@@ -22,12 +21,10 @@ const create: React.FC<jwtProps> = ({ jwt }) => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      // <Alert message='Successfully create a post' type='success' showIcon />;
       message.success('Successfully create a post');
       // console.log('newData', newData.data);
     } catch (error) {
       message.error('Unable to create post');
-      // <Alert message='Unable to create post' type='error' showIcon />;
     }
   };
 

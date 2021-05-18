@@ -3,18 +3,10 @@ export interface UserProps {
   username: string;
   password: string;
 }
-
-export interface UserFormProps {
-  checkUser: string;
-}
 export interface jwtProps {
   jwt: any;
 }
 
-export interface postsProps {
-  jwt: string;
-  feeds: any;
-}
 export interface PostProps {
   id: number;
   desc: string;
