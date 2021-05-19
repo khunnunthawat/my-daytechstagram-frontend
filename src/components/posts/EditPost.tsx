@@ -8,18 +8,19 @@ import { postPropsEdit } from '../types';
 
 const { TextArea } = Input;
 
-export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed, query }: any) => {
+export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed }) => {
   const [isModalEditPost, setModalEditPost] =
     useRecoilState(createCommentState);
   const [editDesc, setEditDesc] = useState(feed.desc);
   const route = useRouter();
 
-  const onFinish = async (feed: any) => {
+  console.log('jwt: ',jwt, 'feed: ',feed);
+
+  const onFinish = async () => {
     try {
-      const { id } = query;
       const params = new URLSearchParams();
-      params.append('desc', feed.desc);
-      await Axios.patch(`/posts/${id}/edit`, params, {
+      params.append('desc', editDesc);
+      await Axios.patch(`/posts/${feed.id}/edit`, params, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -49,10 +50,6 @@ export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed, query }: any) => 
         >
           <div className='mx-auto flex flex-col'>
             <Form.Item
-              name='descPost'
-              rules={[
-                { required: true, message: 'Please input text descripton!' },
-              ]}
               style={{ marginBottom: 12 }}
             >
               <TextArea
