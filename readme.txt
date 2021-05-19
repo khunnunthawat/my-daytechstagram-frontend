@@ -7,6 +7,7 @@
   npm i cookie-cutter
   npm i --save cookies
   npm i --save-dev @types/cookies
+  npm i js-cookie
 
   mkdir src
   move : folder page > src

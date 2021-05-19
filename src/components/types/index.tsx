@@ -1,3 +1,6 @@
+import { IncomingMessage, ServerResponse } from 'http';
+import { NextApiRequestCookies } from 'next/dist/next-server/server/api-utils';
+import { ParsedUrlQuery } from 'querystring';
 import { ReactNode } from 'react';
 export interface UserProps {
   username: string;
@@ -19,6 +22,10 @@ export interface PostProps {
     id: number;
     username: string;
   };
+}
+export interface postPropsEdit {
+  jwt: string;
+  feed: PostProps;
 }
 export interface FeedPostsProps {
   jwt: string;

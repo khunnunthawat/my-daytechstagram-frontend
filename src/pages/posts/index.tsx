@@ -11,7 +11,7 @@ import { Axios } from '../api/backendApi';
 import { FeedPostsProps } from '@/components/types';
 
 const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
-  console.log(jwt);
+  // console.log(jwt);
   const [posts, setPosts] = useRecoilState(postsState);
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
@@ -41,7 +41,7 @@ const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
   return (
     <>
       <Head>
-        <title>Posts</title>
+        <title>Daytechstagram Posts</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <div className='flex justify-center px-4'>

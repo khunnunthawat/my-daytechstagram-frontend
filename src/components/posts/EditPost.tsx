@@ -1,21 +1,36 @@
-import React from 'react';
-import { Input, Upload, Button, Form, Modal } from 'antd';
-import { UploadOutlined } from '@ant-design/icons';
+import React, { useState } from 'react';
+import { Input, Button, Form, Modal, message } from 'antd';
 import { useRecoilState } from 'recoil';
 import { createCommentState } from '../recoil/atom';
 import { useRouter } from 'next/router';
+import { Axios } from 'src/pages/api/backendApi';
+import { postPropsEdit } from '../types';
 
 const { TextArea } = Input;
 
-export const EditPost = () => {
+export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed, query }: any) => {
   const [isModalEditPost, setModalEditPost] =
     useRecoilState(createCommentState);
+  const [editDesc, setEditDesc] = useState(feed.desc);
   const route = useRouter();
 
-  const onFinish = (values: { desc: string }): Promise<boolean> => {
-    console.log(values);
-    setModalEditPost(false);
-    return route.push('/posts');
+  const onFinish = async (feed: any) => {
+    try {
+      const { id } = query;
+      const params = new URLSearchParams();
+      params.append('desc', feed.desc);
+      await Axios.patch(`/posts/${id}/edit`, params, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      message.success('Update edit post success');
+      setModalEditPost(false);
+      return route.push('/posts');
+    } catch (error) {
+      message.error('Unable to edit post');
+    }
   };
 
   const handleCancel = (): Promise<boolean> => {
@@ -40,21 +55,27 @@ export const EditPost = () => {
               ]}
               style={{ marginBottom: 12 }}
             >
-              <TextArea placeholder='Edit descripton post?' autoSize />
-            </Form.Item>
-            <Form.Item
-              // valuePropName='fileList'
-              name='fileList'
-              rules={[{ required: true, message: 'Please upload image!' }]}
-              style={{ marginBottom: 12 }}
-            >
-              <Upload listType='picture' maxCount={1}>
-                <Button icon={<UploadOutlined />} className='rounded'>
-                  Upload
-                </Button>
-              </Upload>
+              <TextArea
+                value={editDesc}
+                onChange={(e) => {
+                  setEditDesc(e.target.value);
+                }}
+                // defaultValue={feed.desc}
+                placeholder='Edit descripton post?'
+                autoSize
+              />
             </Form.Item>
             <div className='flex ml-auto'>
+              <Form.Item>
+                <Button
+                  onClick={handleCancel}
+                  type='primary'
+                  danger
+                  className='rounded'
+                >
+                  Cancel
+                </Button>
+              </Form.Item>
               <Form.Item>
                 <Button
                   htmlType='submit'
