@@ -8,9 +8,8 @@ import { Axios } from '../api/backendApi';
 import { message } from 'antd';
 
 const create: React.FC<jwtProps> = ({ jwt }) => {
-  const onPost = async (desc: string, file: any) => {
+  const onPost = async (desc: string, file: any):Promise<void> => {
     try {
-      // console.log('file', file);
       const formdb = new FormData();
       formdb.append('desc', desc);
       formdb.append('image', file);

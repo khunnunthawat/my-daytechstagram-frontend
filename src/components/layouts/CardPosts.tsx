@@ -13,7 +13,7 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts, onDelete }) => {
   const router = useRouter();
 
   // editPostState
-  const onEditPost = (id: number) => {
+  const onEditPost = (id: number):Promise<boolean> => {
     setModalEditPost(true);
     console.log('onEditPost id: ', id);
     return router.push(`/posts/${id}/edit`);

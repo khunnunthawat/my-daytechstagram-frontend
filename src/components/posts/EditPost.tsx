@@ -14,7 +14,7 @@ export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed }) => {
   const [editDesc, setEditDesc] = useState(feed.desc);
   const route = useRouter();
 
-  const onFinish = async () => {
+  const onFinish = async ():Promise<boolean | undefined> => {
     try {
       const params = new URLSearchParams();
       params.append('desc', editDesc);
