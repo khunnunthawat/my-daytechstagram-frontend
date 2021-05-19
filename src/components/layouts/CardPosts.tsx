@@ -4,19 +4,16 @@ import { CreateComment } from '../comments/CreateComment';
 import { Comments } from '../comments/Comments';
 import { useRecoilState } from 'recoil';
 import { createCommentState } from '../recoil/atom';
-import Link from 'next/link';
 import { CardPostProps } from '../types';
 import { useRouter } from 'next/router';
 
 export const CardPosts: React.FC<CardPostProps> = ({ posts, onDelete }) => {
   const [isModalEditPost, setModalEditPost] =
     useRecoilState(createCommentState);
-  const [toId, setToId] = useState(0);
   const router = useRouter();
 
   // editPostState
   const onEditPost = (id: number) => {
-    // setToId(id);
     setModalEditPost(true);
     console.log('onEditPost id: ', id);
     return router.push(`/posts/${id}/edit`);
@@ -86,7 +83,7 @@ export const CardPosts: React.FC<CardPostProps> = ({ posts, onDelete }) => {
             <div className='text-gray-900 text-base my-4 mx-4 px-2'>
               {post.desc}
             </div>
-            {/* <Comments /> */}
+            <Comments />
             <CreateComment />
           </div>
         </div>

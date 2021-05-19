@@ -11,14 +11,12 @@ import { Axios } from '../api/backendApi';
 import { FeedPostsProps } from '@/components/types';
 
 const posts: React.FC<FeedPostsProps> = ({ jwt, feeds }) => {
-  // console.log(jwt);
   const [posts, setPosts] = useRecoilState(postsState);
   const [isModalPost, setModalPost] = useRecoilState(createPostState);
 
   useEffect(() => {
     //ถ้าค่าใน feed มีการเปลี่ยนแปลง ก็จะทำ useeffect
     setPosts(feeds);
-    // console.log('feeds ', feeds);
   }, [feeds]);
 
   const onDelete = async (id: number) => {

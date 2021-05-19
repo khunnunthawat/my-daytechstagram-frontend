@@ -14,8 +14,6 @@ export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed }) => {
   const [editDesc, setEditDesc] = useState(feed.desc);
   const route = useRouter();
 
-  console.log('jwt: ',jwt, 'feed: ',feed);
-
   const onFinish = async () => {
     try {
       const params = new URLSearchParams();
@@ -44,7 +42,6 @@ export const EditPost: React.FC<postPropsEdit> = ({ jwt, feed }) => {
       <Modal visible={isModalEditPost} footer={null} onCancel={handleCancel}>
         <div className='mb-4 font-bold text-md text-gray-700'>Edit Post</div>
         <Form
-          name='editPostForm'
           initialValues={{ remember: true }}
           onFinish={onFinish}
         >

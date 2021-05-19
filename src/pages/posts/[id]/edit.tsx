@@ -6,8 +6,6 @@ import { GetServerSideProps } from 'next';
 import { Axios } from 'src/pages/api/backendApi';
 
 const edit: React.FC = ({ jwt, data }: any) => {
-  console.log('feed : ', data);
-  
   return (
     <>
       <Head>

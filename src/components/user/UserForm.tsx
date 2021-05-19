@@ -56,7 +56,7 @@ export const UserForm: React.FC<UserFormProps> = ({ checkPage }) => {
         <div className='flex flex-col overflow-hidden bg-white rounded-md shadow-md max md:flex-row md:flex-1 lg:max-w-screen-md'>
           <div className='p-4 py-6 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly'>
             <div className='my-3 text-2xl font-bold tracking-wider text-center'>
-              <p>Eiffel stagram</p>
+              <p>Daytech stagram</p>
             </div>
           </div>
           <div className='p-5 bg-white md:flex-1'>
